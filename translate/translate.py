@@ -232,7 +232,7 @@ if __name__ == '__main__':
     if 2 == sys.argv:
         get_word_from_file(sys.argv[1])
     else:
-        # python脚本生成应用 pyinstaller - F translate.py
+        # python脚本生成应用 pyinstaller -F translate.py
         # 获取运行时目录
         # current_dir1 = os.path.dirname(sys.executable)
         current_dir1 = os.path.dirname(__file__)
