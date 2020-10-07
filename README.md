@@ -1,20 +1,26 @@
 # flutter_tool_py
 
-针对Flutter工程的一些py脚本
+##### 针对Flutter工程的一些py脚本
+
+* [翻译能力](#translate)
+* [倍图资源处理能力](#handleImages)
+
+<h2 id="translate"> </h2>
 
 ## `translate`文件夹 -- 针对`i18n`,`Intl`等配套使用
+
 * 使用前请安装`python3`以及相关库
 
-```
-import hashlib
-import random
-import os
-import requests
-import sys
-from urllib import parse
-import json
-from string import punctuation
-```
+	```
+	import hashlib
+	import random
+	import os
+	import requests
+	import sys
+	from urllib import parse
+	import json
+	from string import punctuation
+	```
 
 * 翻译能力来自[百度翻译](https://api.fanyi.baidu.com/)
 * `translate.py`脚本文件内`appid` 和 `secretKey` 获取自[百度翻译开放平台管理控制器](https://api.fanyi.baidu.com/api/trans/product/desktop?req=developer)
@@ -152,6 +158,8 @@ python脚本生成应用`pyinstaller -F translate.py`,生成完成后放在同�
 	* 待翻译结果可以修改为任何语言
 
 
+<h2 id="handleImages"> </h2>
+
 ## `handleImages`文件夹--处理图片
 
 * 在开发中如果使用`png`图片时，会遇到在`iOS`下使用`@2x`、`@3x`图片资源的问题，从蓝湖上下载出来的图片名称往往都是各种乱七八糟的名称以及处于同级文件夹下。在`flutter`项目中，我们想要使用这种图片，就需要手动修改名称，然后移动到对应的`2.0x`、`3.0x`文件夹下，该脚本为解决此问题而生。ps.使用`svg`、`webp`格式更好～
@@ -161,47 +169,47 @@ python脚本生成应用`pyinstaller -F translate.py`,生成完成后放在同�
 * 举个🌰(具体可查看相关文件内容)
 	* `test/source`文件夹
 	
-	```
-	点赞.png
-	点赞@2x.png
-	点赞@3x.png
-	高清.png
-	高清@2x.png
-	高清@3x.png
-	回放.png
-	回放@2x.png
-	回放@3x.png
-	```
+		```
+		点赞.png
+		点赞@2x.png
+		点赞@3x.png
+		高清.png
+		高清@2x.png
+		高清@3x.png
+		回放.png
+		回放@2x.png
+		回放@3x.png
+		```
 
 	* 运行之后效果如`images`文件夹
 
-	```
-	2.0x
-	2.0x/test_0.png
-	2.0x/test_1.png
-	2.0x/test_2.png
-	3.0x
-	3.0x/test_0.png
-	3.0x/test_1.png
-	3.0x/test_2.png
-	test_0.png
-	test_1.png
-	test_2.png
-	```
+		```
+		2.0x
+		2.0x/test_0.png
+		2.0x/test_1.png
+		2.0x/test_2.png
+		3.0x
+		3.0x/test_0.png
+		3.0x/test_1.png
+		3.0x/test_2.png
+		test_0.png
+		test_1.png
+		test_2.png
+		```
 	
 * 使用方法1⃣️
 	* 将`handleImages/handleImages/dist/handleImages`程序复制到对应的图片文件夹内，双击运行
 
-```
-Last login: Wed Oct  7 16:21:20 on ttys000
-***/flutter_tool_py/handleImages/test/images/handleImages ; exit;
-☁  ~  ***/flutter_tool_py/handleImages/test/images/handleImages ; exit;
-Please enter the picture name prefix required:test
-Current folder path: ***/flutter_tool_py/handleImages/test/images
-===>>> change_name finish , count == 3
-
-[进程已完成]
-```
+		```
+		Last login: Wed Oct  7 16:21:20 on ttys000
+		***/flutter_tool_py/handleImages/test/images/handleImages ; exit;
+		☁  ~  ***/flutter_tool_py/handleImages/test/images/handleImages ; exit;
+		Please enter the picture name prefix required:test
+		Current folder path: ***/flutter_tool_py/handleImages/test/images
+		===>>> change_name finish , count == 3
+		
+		[进程已完成]
+		```
 
 
 * 使用方法2⃣️
