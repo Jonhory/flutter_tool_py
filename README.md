@@ -140,7 +140,7 @@ repeat⚠️: ['mHelloWorld', 'mThisIsATranslation']
 3.直接命令行运行
 
 ```
-python3 /Users/yaliang/Desktop/PythonProjects/translate.py
+python3 ***/Desktop/PythonProjects/translate.py
 ```
 
 或者生成程序，以后双击使用即可。
