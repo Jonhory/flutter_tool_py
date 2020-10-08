@@ -4,6 +4,7 @@
 
 * [翻译能力](#translate)
 * [倍图资源处理能力](#handleImages)
+* [json数据解析能力`json_serializable_py`](#json_serializable_py)
 
 <h2 id="translate"> </h2>
 
@@ -220,3 +221,88 @@ python脚本生成应用`pyinstaller -F translate.py`,生成完成后放在同�
 
 * 可自行修改源码发挥空间
 	* 结合翻译脚本相关方法，可以将图片名称从中文转为对应的英文
+	
+	
+<h2 id="json_serializable_py"> </h2>
+
+## json数据解析能力`json_serializable_py`
+
+* `json_example`数据来源自[网络](https://blog.csdn.net/LVXIANGAN/article/details/81544881)
+* 实现效果类似[`json_serializable`](https://pub.dev/packages/json_serializable)
+* 由于`json_serializable`使用效果实际上达不到个人开发需求，所以撸了一个脚本来实现。
+
+部分效果预览：
+
+```
+
+class Result {
+  int status;
+  String message;
+  Data data;
+
+  Result({
+    this.status,
+    this.message,
+    this.data,
+  });
+
+  factory Result.fromJson(Map<String, dynamic> json) =>
+    _$ResultFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResultToJson(this);
+
+}
+
+Result _$ResultFromJson(Map<String, dynamic> json) {
+  return Result(
+    status: json['status'] as int,
+    message: json['message'] as String,
+    data: json['data'] == null
+        ? null
+        : Data.fromJson(
+            json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$ResultToJson(
+        Result instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };
+```
+
+* 脚本内`is_class_name_brief`控制输出的类名是否为简洁模式。如果是的话，需要注意检查结果，可能会漏生成在不同类具备同名的类。具体区别查看下方的文件链接👇
+
+* 使用指南：
+	* [测试文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/json_example)
+	* [简洁模式输出文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/result_brief.txt)
+	* [非简洁模式输出文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/result.txt)
+
+	* 非简洁模式和简洁模式的区别🌰：
+	
+		文件格式为：
+
+		```
+		{
+		    "status": 0,
+		    "message": "",
+		    "data": {
+		        "search_data": [
+		            {
+		                "elements": []
+		            }
+		        ]
+		    }
+		}
+		```
+		
+		* 非简洁模式底层的`elements`类名会生成为`ResultDataSearch_dataElements`
+		* 简洁模式下类名会生成为`Elements`，在[简洁模式输出文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/result_brief.txt)中会看到有重复的`Elements`类名，这是因为源数据中有重复的`elements`字段。所以在使用简洁模式生成出来后需要自行检查调整。
+			
+	
+	
+
+
+
