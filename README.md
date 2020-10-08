@@ -273,9 +273,16 @@ Map<String, dynamic> _$ResultToJson(
     };
 ```
 
-* 脚本内`is_class_name_brief`控制输出的类名是否为简洁模式。如果是的话，需要注意检查结果，可能会漏生成在不同类具备同名的类。具体区别查看下方的文件链接👇
+* 脚本内`is_class_name_brief`控制输出的类名是否为简洁模式，默认值为`True`。如果是的话，需要注意检查结果，可能会漏生成在不同类具备同名的类。具体区别查看下方的文件链接👇
 
 * 使用指南：
+	* 命令行运行
+	
+	```
+	python3 json_serializable_py.py
+	```
+	* 懒人模式，直接下载[程序](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/sample_json_serialzable)之后，在同级文件夹下新增`json_example`写入源数据，双击运行程序即可生成[jsonBean.txt](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/jsonBean.txt)。然后自行修改部分类名即可。
+	
 	* [测试文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/json_example)
 	* [简洁模式输出文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/result_brief.txt)
 	* [非简洁模式输出文件](https://github.com/Jonhory/flutter_tool_py/blob/main/json_serializable_py/result.txt)
