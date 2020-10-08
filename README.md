@@ -50,15 +50,15 @@ Ready:【 你好，世界！ 】 to:  en
 Translation completed  你好，世界！  >>>  Hello, world!
 Ready:【 这是一个翻译的小工具 】 to:  en
 Translation completed  这是一个翻译的小工具  >>>  This is a translation tool
-Rewrite successful: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_zh.arb
-Rewrite successful: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en_US.arb
+Rewrite successful: /Desktop/PythonProjects/lib/localization/strings_zh.arb
+Rewrite successful: /Desktop/PythonProjects/lib/localization/strings_en_US.arb
 Translate finished >>> total:  2
-Rewrite successful: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en.arb
+Rewrite successful: /Desktop/PythonProjects/lib/localization/strings_en.arb
 
 
-❌Please check if it is json data format: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_zh.arb
-❌Please check if it is json data format: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en_US.arb
-❌Please check if it is json data format: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en.arb
+❌Please check if it is json data format: /Desktop/PythonProjects/lib/localization/strings_zh.arb
+❌Please check if it is json data format: /Desktop/PythonProjects/lib/localization/strings_en_US.arb
+❌Please check if it is json data format: /Desktop/PythonProjects/lib/localization/strings_en.arb
 ```
 
 当文件内容不是`json`格式时，会提示`❌Please check if it is json data format:`,此时需要用户自行处理该文件，使其成为`json`格式数据。
@@ -110,26 +110,26 @@ Ready:【 你我皆凡人　生在人世间 】 to:  en
 Translation completed  你我皆凡人　生在人世间  >>>  You and I are all mortals born in the world
 Ready:【 终日奔波苦　一刻不得闲 】 to:  en
 Translation completed  终日奔波苦　一刻不得闲  >>>  All day long, hard, no leisure
-Rewrite successful: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_zh.arb
-Rewrite successful: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en_US.arb
+Rewrite successful: /Desktop/PythonProjects/lib/localization/strings_zh.arb
+Rewrite successful: /Desktop/PythonProjects/lib/localization/strings_en_US.arb
 Translate finished >>> total:  4
-Rewrite successful: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en.arb
+Rewrite successful: /Desktop/PythonProjects/lib/localization/strings_en.arb
 
 
-Check the data path: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_zh.arb
+Check the data path: /Desktop/PythonProjects/lib/localization/strings_zh.arb
 Total valid data: 4
 Raw data: 6
-report:【 2 】Duplicate fields, please check the file path: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_zh.arb
+report:【 2 】Duplicate fields, please check the file path: /Desktop/PythonProjects/lib/localization/strings_zh.arb
 repeat⚠️: ['mHelloWorld', 'mThisIsATranslation']
-Check the data path: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en_US.arb
+Check the data path: /Desktop/PythonProjects/lib/localization/strings_en_US.arb
 Total valid data: 4
 Raw data: 6
-report:【 2 】Duplicate fields, please check the file path: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en_US.arb
+report:【 2 】Duplicate fields, please check the file path: /Desktop/PythonProjects/lib/localization/strings_en_US.arb
 repeat⚠️: ['mHelloWorld', 'mThisIsATranslation']
-Check the data path: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en.arb
+Check the data path: /Desktop/PythonProjects/lib/localization/strings_en.arb
 Total valid data: 4
 Raw data: 6
-report:【 2 】Duplicate fields, please check the file path: /Users/yaliang/Desktop/PythonProjects/lib/localization/strings_en.arb
+report:【 2 】Duplicate fields, please check the file path: /Desktop/PythonProjects/lib/localization/strings_en.arb
 repeat⚠️: ['mHelloWorld', 'mThisIsATranslation']
 ```
 
