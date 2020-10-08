@@ -1,0 +1,640 @@
+
+class Result {
+  int status;
+  String message;
+  Data data;
+
+  Result({
+    this.status,
+    this.message,
+    this.data,
+  });
+
+  factory Result.fromJson(Map<String, dynamic> json) =>
+    _$ResultFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ResultToJson(this);
+
+}
+
+Result _$ResultFromJson(Map<String, dynamic> json) {
+  return Result(
+    status: json['status'] as int,
+    message: json['message'] as String,
+    data: json['data'] == null
+        ? null
+        : Data.fromJson(
+            json['data'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$ResultToJson(
+        Result instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };
+
+
+class Data {
+  List<Search_data> search_data;
+  String date_time;
+  List<Elements> elements;
+
+  Data({
+    this.search_data,
+    this.date_time,
+    this.elements,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) =>
+    _$DataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+
+}
+
+Data _$DataFromJson(Map<String, dynamic> json) {
+  return Data(
+    search_data: (json['search_data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : Search_data.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    date_time: json['date_time'] as String,
+    elements: (json['elements'] as List)
+        ?.map((e) => e == null
+            ? null
+            : Elements.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+  );
+}
+
+Map<String, dynamic> _$DataToJson(
+        Data instance) =>
+    <String, dynamic>{
+      'search_data': instance.search_data,
+      'date_time': instance.date_time,
+      'elements': instance.elements,
+    };
+
+
+class Search_data {
+  List<Elements> elements;
+  String type;
+  String title;
+
+  Search_data({
+    this.elements,
+    this.type,
+    this.title,
+  });
+
+  factory Search_data.fromJson(Map<String, dynamic> json) =>
+    _$Search_dataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$Search_dataToJson(this);
+
+}
+
+Search_data _$Search_dataFromJson(Map<String, dynamic> json) {
+  return Search_data(
+    elements: (json['elements'] as List)
+        ?.map((e) => e == null
+            ? null
+            : Elements.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    type: json['type'] as String,
+    title: json['title'] as String,
+  );
+}
+
+Map<String, dynamic> _$Search_dataToJson(
+        Search_data instance) =>
+    <String, dynamic>{
+      'elements': instance.elements,
+      'type': instance.type,
+      'title': instance.title,
+    };
+
+
+class Elements {
+  int rating;
+  String name;
+  String url;
+  int wish_to_go_count;
+  String name_orig;
+  int visited_count;
+  int comments_count;
+  Location location;
+  bool has_experience;
+  int rating_users;
+  String name_zh;
+  String name_en;
+  int type;
+  int id;
+  bool has_route_maps;
+  String icon;
+
+  Elements({
+    this.rating,
+    this.name,
+    this.url,
+    this.wish_to_go_count,
+    this.name_orig,
+    this.visited_count,
+    this.comments_count,
+    this.location,
+    this.has_experience,
+    this.rating_users,
+    this.name_zh,
+    this.name_en,
+    this.type,
+    this.id,
+    this.has_route_maps,
+    this.icon,
+  });
+
+  factory Elements.fromJson(Map<String, dynamic> json) =>
+    _$ElementsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ElementsToJson(this);
+
+}
+
+Elements _$ElementsFromJson(Map<String, dynamic> json) {
+  return Elements(
+    rating: json['rating'] as int,
+    name: json['name'] as String,
+    url: json['url'] as String,
+    wish_to_go_count: json['wish_to_go_count'] as int,
+    name_orig: json['name_orig'] as String,
+    visited_count: json['visited_count'] as int,
+    comments_count: json['comments_count'] as int,
+    location: json['location'] == null
+        ? null
+        : Location.fromJson(
+            json['location'] as Map<String, dynamic>),
+    has_experience: json['has_experience'] as bool,
+    rating_users: json['rating_users'] as int,
+    name_zh: json['name_zh'] as String,
+    name_en: json['name_en'] as String,
+    type: json['type'] as int,
+    id: json['id'] as int,
+    has_route_maps: json['has_route_maps'] as bool,
+    icon: json['icon'] as String,
+  );
+}
+
+Map<String, dynamic> _$ElementsToJson(
+        Elements instance) =>
+    <String, dynamic>{
+      'rating': instance.rating,
+      'name': instance.name,
+      'url': instance.url,
+      'wish_to_go_count': instance.wish_to_go_count,
+      'name_orig': instance.name_orig,
+      'visited_count': instance.visited_count,
+      'comments_count': instance.comments_count,
+      'location': instance.location,
+      'has_experience': instance.has_experience,
+      'rating_users': instance.rating_users,
+      'name_zh': instance.name_zh,
+      'name_en': instance.name_en,
+      'type': instance.type,
+      'id': instance.id,
+      'has_route_maps': instance.has_route_maps,
+      'icon': instance.icon,
+    };
+
+
+class Location {
+  double lat;
+  double lng;
+
+  Location({
+    this.lat,
+    this.lng,
+  });
+
+  factory Location.fromJson(Map<String, dynamic> json) =>
+    _$LocationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LocationToJson(this);
+
+}
+
+Location _$LocationFromJson(Map<String, dynamic> json) {
+  return Location(
+    lat: json['lat'] as double,
+    lng: json['lng'] as double,
+  );
+}
+
+Map<String, dynamic> _$LocationToJson(
+        Location instance) =>
+    <String, dynamic>{
+      'lat': instance.lat,
+      'lng': instance.lng,
+    };
+
+
+class Elements {
+  int type;
+  List<Data> data;
+  String desc;
+
+  Elements({
+    this.type,
+    this.data,
+    this.desc,
+  });
+
+  factory Elements.fromJson(Map<String, dynamic> json) =>
+    _$ElementsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ElementsToJson(this);
+
+}
+
+Elements _$ElementsFromJson(Map<String, dynamic> json) {
+  return Elements(
+    type: json['type'] as int,
+    data: (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : Data.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    desc: json['desc'] as String,
+  );
+}
+
+Map<String, dynamic> _$ElementsToJson(
+        Elements instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'data': instance.data,
+      'desc': instance.desc,
+    };
+
+
+class Data {
+  String text;
+  bool is_liked;
+  String index_cover;
+  String poi;
+  int cover_image_height;
+  int trip_id;
+  String index_title;
+  Center_point center_point;
+  int view_count;
+  String location_alias;
+  String cover_image_1600;
+  String cover_image_s;
+  String share_url;
+  String timezone;
+  String date_tour;
+  bool is_hiding_location;
+  User user;
+  int spot_id;
+  bool is_author;
+  String cover_image_w640;
+  Region region;
+  int comments_count;
+  String cover_image;
+  int cover_image_width;
+  int recommendations_count;
+
+  Data({
+    this.text,
+    this.is_liked,
+    this.index_cover,
+    this.poi,
+    this.cover_image_height,
+    this.trip_id,
+    this.index_title,
+    this.center_point,
+    this.view_count,
+    this.location_alias,
+    this.cover_image_1600,
+    this.cover_image_s,
+    this.share_url,
+    this.timezone,
+    this.date_tour,
+    this.is_hiding_location,
+    this.user,
+    this.spot_id,
+    this.is_author,
+    this.cover_image_w640,
+    this.region,
+    this.comments_count,
+    this.cover_image,
+    this.cover_image_width,
+    this.recommendations_count,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) =>
+    _$DataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataToJson(this);
+
+}
+
+Data _$DataFromJson(Map<String, dynamic> json) {
+  return Data(
+    text: json['text'] as String,
+    is_liked: json['is_liked'] as bool,
+    index_cover: json['index_cover'] as String,
+    poi: json['poi'] as String,
+    cover_image_height: json['cover_image_height'] as int,
+    trip_id: json['trip_id'] as int,
+    index_title: json['index_title'] as String,
+    center_point: json['center_point'] == null
+        ? null
+        : Center_point.fromJson(
+            json['center_point'] as Map<String, dynamic>),
+    view_count: json['view_count'] as int,
+    location_alias: json['location_alias'] as String,
+    cover_image_1600: json['cover_image_1600'] as String,
+    cover_image_s: json['cover_image_s'] as String,
+    share_url: json['share_url'] as String,
+    timezone: json['timezone'] as String,
+    date_tour: json['date_tour'] as String,
+    is_hiding_location: json['is_hiding_location'] as bool,
+    user: json['user'] == null
+        ? null
+        : User.fromJson(
+            json['user'] as Map<String, dynamic>),
+    spot_id: json['spot_id'] as int,
+    is_author: json['is_author'] as bool,
+    cover_image_w640: json['cover_image_w640'] as String,
+    region: json['region'] == null
+        ? null
+        : Region.fromJson(
+            json['region'] as Map<String, dynamic>),
+    comments_count: json['comments_count'] as int,
+    cover_image: json['cover_image'] as String,
+    cover_image_width: json['cover_image_width'] as int,
+    recommendations_count: json['recommendations_count'] as int,
+  );
+}
+
+Map<String, dynamic> _$DataToJson(
+        Data instance) =>
+    <String, dynamic>{
+      'text': instance.text,
+      'is_liked': instance.is_liked,
+      'index_cover': instance.index_cover,
+      'poi': instance.poi,
+      'cover_image_height': instance.cover_image_height,
+      'trip_id': instance.trip_id,
+      'index_title': instance.index_title,
+      'center_point': instance.center_point,
+      'view_count': instance.view_count,
+      'location_alias': instance.location_alias,
+      'cover_image_1600': instance.cover_image_1600,
+      'cover_image_s': instance.cover_image_s,
+      'share_url': instance.share_url,
+      'timezone': instance.timezone,
+      'date_tour': instance.date_tour,
+      'is_hiding_location': instance.is_hiding_location,
+      'user': instance.user,
+      'spot_id': instance.spot_id,
+      'is_author': instance.is_author,
+      'cover_image_w640': instance.cover_image_w640,
+      'region': instance.region,
+      'comments_count': instance.comments_count,
+      'cover_image': instance.cover_image,
+      'cover_image_width': instance.cover_image_width,
+      'recommendations_count': instance.recommendations_count,
+    };
+
+
+class Center_point {
+
+  Center_point();
+
+  factory Center_point.fromJson(Map<String, dynamic> json) =>
+    _$Center_pointFromJson(json);
+
+  Map<String, dynamic> toJson() => _$Center_pointToJson(this);
+
+}
+
+Center_point _$Center_pointFromJson(Map<String, dynamic> json) {
+  return Center_point(
+  );
+}
+
+Map<String, dynamic> _$Center_pointToJson(
+        Center_point instance) =>
+    <String, dynamic>{
+    };
+
+
+class User {
+  String location_name;
+  String name;
+  String resident_city_id;
+  String mobile;
+  int gender;
+  String avatar_m;
+  String cover;
+  String custom_url;
+  Experience experience;
+  int id;
+  String birthday;
+  String country_num;
+  String avatar_s;
+  String country_code;
+  bool email_verified;
+  bool is_hunter;
+  bool cdc2;
+  String avatar_l;
+  String email;
+  String user_desc;
+  int points;
+
+  User({
+    this.location_name,
+    this.name,
+    this.resident_city_id,
+    this.mobile,
+    this.gender,
+    this.avatar_m,
+    this.cover,
+    this.custom_url,
+    this.experience,
+    this.id,
+    this.birthday,
+    this.country_num,
+    this.avatar_s,
+    this.country_code,
+    this.email_verified,
+    this.is_hunter,
+    this.cdc2,
+    this.avatar_l,
+    this.email,
+    this.user_desc,
+    this.points,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) =>
+    _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+
+}
+
+User _$UserFromJson(Map<String, dynamic> json) {
+  return User(
+    location_name: json['location_name'] as String,
+    name: json['name'] as String,
+    resident_city_id: json['resident_city_id'] as String,
+    mobile: json['mobile'] as String,
+    gender: json['gender'] as int,
+    avatar_m: json['avatar_m'] as String,
+    cover: json['cover'] as String,
+    custom_url: json['custom_url'] as String,
+    experience: json['experience'] == null
+        ? null
+        : Experience.fromJson(
+            json['experience'] as Map<String, dynamic>),
+    id: json['id'] as int,
+    birthday: json['birthday'] as String,
+    country_num: json['country_num'] as String,
+    avatar_s: json['avatar_s'] as String,
+    country_code: json['country_code'] as String,
+    email_verified: json['email_verified'] as bool,
+    is_hunter: json['is_hunter'] as bool,
+    cdc2: json['cdc2'] as bool,
+    avatar_l: json['avatar_l'] as String,
+    email: json['email'] as String,
+    user_desc: json['user_desc'] as String,
+    points: json['points'] as int,
+  );
+}
+
+Map<String, dynamic> _$UserToJson(
+        User instance) =>
+    <String, dynamic>{
+      'location_name': instance.location_name,
+      'name': instance.name,
+      'resident_city_id': instance.resident_city_id,
+      'mobile': instance.mobile,
+      'gender': instance.gender,
+      'avatar_m': instance.avatar_m,
+      'cover': instance.cover,
+      'custom_url': instance.custom_url,
+      'experience': instance.experience,
+      'id': instance.id,
+      'birthday': instance.birthday,
+      'country_num': instance.country_num,
+      'avatar_s': instance.avatar_s,
+      'country_code': instance.country_code,
+      'email_verified': instance.email_verified,
+      'is_hunter': instance.is_hunter,
+      'cdc2': instance.cdc2,
+      'avatar_l': instance.avatar_l,
+      'email': instance.email,
+      'user_desc': instance.user_desc,
+      'points': instance.points,
+    };
+
+
+class Experience {
+  int value;
+  Level_info level_info;
+
+  Experience({
+    this.value,
+    this.level_info,
+  });
+
+  factory Experience.fromJson(Map<String, dynamic> json) =>
+    _$ExperienceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ExperienceToJson(this);
+
+}
+
+Experience _$ExperienceFromJson(Map<String, dynamic> json) {
+  return Experience(
+    value: json['value'] as int,
+    level_info: json['level_info'] == null
+        ? null
+        : Level_info.fromJson(
+            json['level_info'] as Map<String, dynamic>),
+  );
+}
+
+Map<String, dynamic> _$ExperienceToJson(
+        Experience instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'level_info': instance.level_info,
+    };
+
+
+class Level_info {
+  String name;
+  int value;
+
+  Level_info({
+    this.name,
+    this.value,
+  });
+
+  factory Level_info.fromJson(Map<String, dynamic> json) =>
+    _$Level_infoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$Level_infoToJson(this);
+
+}
+
+Level_info _$Level_infoFromJson(Map<String, dynamic> json) {
+  return Level_info(
+    name: json['name'] as String,
+    value: json['value'] as int,
+  );
+}
+
+Map<String, dynamic> _$Level_infoToJson(
+        Level_info instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'value': instance.value,
+    };
+
+
+class Region {
+  String primary;
+  String secondary;
+
+  Region({
+    this.primary,
+    this.secondary,
+  });
+
+  factory Region.fromJson(Map<String, dynamic> json) =>
+    _$RegionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RegionToJson(this);
+
+}
+
+Region _$RegionFromJson(Map<String, dynamic> json) {
+  return Region(
+    primary: json['primary'] as String,
+    secondary: json['secondary'] as String,
+  );
+}
+
+Map<String, dynamic> _$RegionToJson(
+        Region instance) =>
+    <String, dynamic>{
+      'primary': instance.primary,
+      'secondary': instance.secondary,
+    };
+
