@@ -13,7 +13,11 @@
     "phone": "relatedUrl1",
     "priceRange": "relatedUrl1",
     "visitors": [
-        "1",
-        "2"
+        {
+            "url": "12",
+            "name": "1",
+            "time": "",
+            "receptionName": "23"
+        }
     ]
 }

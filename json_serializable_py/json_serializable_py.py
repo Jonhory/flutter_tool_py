@@ -8,6 +8,7 @@ written_dict_list = []
 # 生成的类名是否采用简洁模式，如果是的话，需要注意检查结果，可能会漏生成在不同类具备同名的类
 is_class_name_brief = True
 
+
 # 读取源文件
 def readfile(file_path, name='SourceBean'):
     try:
@@ -169,6 +170,7 @@ def analysis_one_dict(dic, result, class_name):
 
     return [result, other_list]
 
+
 # 增加类方法
 def add_class_method_in(result, class_name):
     result += '\n'
@@ -177,6 +179,7 @@ def add_class_method_in(result, class_name):
     result += '\n'
     result += '  Map<String, dynamic> toJson() => _$' + class_name + 'ToJson(this);\n'
     return result
+
 
 # 实现类方法
 def add_class_method(dic, result, class_name):
@@ -252,6 +255,7 @@ def add_class_method(dic, result, class_name):
 
     return result
 
+
 # 查重
 def check_repeat_dic(dic):
     for _dic in written_dict_list:
@@ -282,6 +286,7 @@ def save_file(content, path_save, suffix):
         f.write(content)
         print('🎉保存成功：', new_file)
 
+
 def input_source_path():
     source_path = input('请输入json数据源文件路径：')
     if source_path == '':
@@ -292,6 +297,7 @@ def input_source_path():
             input_source_path()
         else:
             return source_path
+
 
 if __name__ == "__main__":
 
@@ -327,4 +333,3 @@ if __name__ == "__main__":
         else:
             file_result = readfile(path, bean_name)
             save_file(file_result, save_path, bean_name)
-

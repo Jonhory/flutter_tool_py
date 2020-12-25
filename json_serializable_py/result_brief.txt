@@ -13,7 +13,7 @@ class ReceptionDetailBean {
   String address;
   String phone;
   String priceRange;
-  List<String> visitors;
+  List<Visitors> visitors;
 
   ReceptionDetailBean({
     this.relatedUrl1,
@@ -55,7 +55,10 @@ ReceptionDetailBean _$ReceptionDetailBeanFromJson(Map<String, dynamic> json) {
     phone: json['phone'] as String,
     priceRange: json['priceRange'] as String,
     visitors: (json['visitors'] as List)
-        ?.map((e) => e as String)?.toList(),
+        ?.map((e) => e == null
+            ? null
+            : Visitors.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -76,5 +79,44 @@ Map<String, dynamic> _$ReceptionDetailBeanToJson(
       'phone': instance.phone,
       'priceRange': instance.priceRange,
       'visitors': instance.visitors,
+    };
+
+
+class Visitors {
+  String url;
+  String name;
+  String time;
+  String receptionName;
+
+  Visitors({
+    this.url,
+    this.name,
+    this.time,
+    this.receptionName,
+  });
+
+  factory Visitors.fromJson(Map<String, dynamic> json) =>
+    _$VisitorsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VisitorsToJson(this);
+
+}
+
+Visitors _$VisitorsFromJson(Map<String, dynamic> json) {
+  return Visitors(
+    url: json['url'] as String,
+    name: json['name'] as String,
+    time: json['time'] as String,
+    receptionName: json['receptionName'] as String,
+  );
+}
+
+Map<String, dynamic> _$VisitorsToJson(
+        Visitors instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'name': instance.name,
+      'time': instance.time,
+      'receptionName': instance.receptionName,
     };
 
