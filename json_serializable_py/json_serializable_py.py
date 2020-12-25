@@ -10,25 +10,31 @@ is_class_name_brief = True
 
 # 读取源文件
 def readfile(file_path, name='SourceBean'):
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-        f.close()
-        js = json.dumps(content)
-        resource = json.loads(js)
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            f.close()
+            js = json.dumps(content)
+            resource = json.loads(js)
 
-        data = json.loads(resource)
+            data = json.loads(resource)
 
-        # 通用头部
-        to_result = ''
+            # 通用头部
+            to_result = ''
 
-        if type(data) is dict:
-            to_result = analysis_dict(data, to_result, name)
-        elif type(data) is list:
-            if (len(data)) > 0:
-                to_result = analysis_dict(data[0], to_result, name)
+            if type(data) is dict:
+                to_result = analysis_dict(data, to_result, name)
+            elif type(data) is list:
+                if (len(data)) > 0:
+                    to_result = analysis_dict(data[0], to_result, name)
 
-        print('🎉解析完成，正在准备保存...')
-        return to_result
+            print('🎉解析完成，正在准备保存...')
+            return to_result
+    except json.decoder.JSONDecodeError as e:
+        print('错误！请检查数据源格式，非json!!!')
+        print(e)
+        return ''
+
 
 # 解析字典类型
 def analysis_dict(dic, result, class_name):
@@ -115,24 +121,36 @@ def analysis_one_dict(dic, result, class_name):
             other_list.append({k: v})
         elif type(v) is list:
             result += '  '
-            if len(v) > 0 and type(v[0]) is dict:
-                check = check_repeat_dic(v[0])
-                if check[0]:
-                    if is_class_name_brief:
-                        result += 'List<' + check[1] + '> ' + k + ';\n'
-                    else:
-                        result += 'List<' + class_name + check[1] + '> ' + k + ';\n'
-                else:
-                    if is_class_name_brief:
-                        result += 'List<' + k.capitalize() + '> ' + k + ';\n'
-                    else:
-                        result += 'List<' + class_name + k.capitalize() + '> ' + k + ';\n'
 
-                other_list.append({k: v})
+            # 数组长度大于0
+            if len(v) > 0:
+                # 判断数组内部数据类型
+                # List<Map>
+                if type(v[0]) is dict:
+                    check = check_repeat_dic(v[0])
+                    if check[0]:
+                        if is_class_name_brief:
+                            result += 'List<' + check[1] + '> ' + k + ';\n'
+                        else:
+                            result += 'List<' + class_name + check[1] + '> ' + k + ';\n'
+                    else:
+                        if is_class_name_brief:
+                            result += 'List<' + k.capitalize() + '> ' + k + ';\n'
+                        else:
+                            result += 'List<' + class_name + k.capitalize() + '> ' + k + ';\n'
 
-            elif len(v) > 0 and type(v[0]) is list:
-                if len(v[0]) > 0:
+                    other_list.append({k: v})
+
+                # List<str>
+                elif type(v[0]) is str:
                     result += 'List<String> ' + k + ';\n'
+                # List<int>
+                elif type(v[0]) is int:
+                    result += 'List<int> ' + k + ';\n'
+                elif type(v[0]) == float:
+                    result += 'List<double> ' + k + ';\n'
+                elif type(v[0]) == bool:
+                    result += 'List<bool> ' + k + ';\n'
                 else:
                     result += 'List ' + k + ';\n'
             else:
@@ -170,15 +188,34 @@ def add_class_method(dic, result, class_name):
         v_type = 'String'
         type_v = type(v)
         if type_v is list:
-            if is_class_name_brief:
-                v_type = k.capitalize()
+            # 数组长度大于0
+            if len(v) > 0:
+                if type(v[0]) is dict:
+                    if is_class_name_brief:
+                        v_type = k.capitalize()
+                    else:
+                        v_type = class_name + k.capitalize()
+                    result += '    ' + k + ": (json['" + k + "'] as List)\n"
+                    result += '        ' + '?.map((e) => e == null\n'
+                    result += '            ' + '? null\n'
+                    result += '            ' + ': ' + v_type + '.fromJson(e as Map<String, dynamic>))\n'
+                    result += '        ' + '?.toList(),\n'
+                elif type(v[0]) is str:
+                    result += '    ' + k + ": (json['" + k + "'] as List)\n"
+                    result += '        ' + '?.map((e) => e as String)?.toList(),\n'
+                elif type(v[0]) is int:
+                    result += '    ' + k + ": (json['" + k + "'] as List)\n"
+                    result += '        ' + '?.map((e) => e as int)?.toList(),\n'
+                elif type(v[0]) is float:
+                    result += '    ' + k + ": (json['" + k + "'] as List)\n"
+                    result += '        ' + '?.map((e) => e as double)?.toList(),\n'
+                elif type(v[0]) is bool:
+                    result += '    ' + k + ": (json['" + k + "'] as List)\n"
+                    result += '        ' + '?.map((e) => e as bool)?.toList(),\n'
+
             else:
-                v_type = class_name + k.capitalize()
-            result += '    ' + k + ": (json['" + k + "'] as List)\n"
-            result += '        ' + '?.map((e) => e == null\n'
-            result += '            ' + '? null\n'
-            result += '            ' + ': ' + v_type + '.fromJson(e as Map<String, dynamic>))\n'
-            result += '        ' + '?.toList(),\n'
+                result += '    ' + k + ": (json['" + k + "'] as List)\n"
+                result += '        ' + '?.map((e) => e as String)?.toList(),\n'
             continue
 
         if type_v is dict:
@@ -228,6 +265,8 @@ def check_repeat_dic(dic):
 
 # 保存文件
 def save_file(content, path_save, suffix):
+    if content == '':
+        return
     p = os.path.split(path_save)
     file = p[1].split('.')[0]
     new_file = p[0] + "/" + file + suffix
@@ -256,9 +295,14 @@ def input_source_path():
 
 if __name__ == "__main__":
 
-    is_test = False
+    is_test = True
     if is_test:
-        file_result = readfile(os.path.dirname(__file__) + '/json_example', 'Result')
+        bean_name = input('请输入最外层的类名（默认请直接按回车）：')
+        if bean_name == '':
+            bean_name = 'Result'
+        print('bean_name = ', bean_name)
+
+        file_result = readfile(os.path.dirname(__file__) + '/json_example', bean_name)
         if is_class_name_brief:
             result_name = 'result_brief.txt'
         else:
